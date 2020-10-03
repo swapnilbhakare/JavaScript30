@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update CSS Variables with js</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+    <div class="controls">
+      <label for="spacing">Spacing</label>
+      <input
+        id='spacing'
+        type="range"
+        name="spacing"
+        min="10"
+        max="200"
+        value="=10"
+        data-sizing="px"
+      />
+      <label for="blur">Blur</label>
+      <input
+        id = 'blur'
+        type="range"
+        name="blur"
+        min="0"
+        max="25"
+        value="=10"
+        data-sizing="px"
+      />
+
+      <label for="base">Base Color:</label>
+     <input id="base" type="color" name="base" value="#ffc600">
+    </div>
+    <img width="400" height="400" 
+      src="https://images.pexels.com/photos/4073072/pexels-photo-4073072.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+    />
+
+   <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+    }
+    inputs.forEach(input=> input.addEventListener('change',handleUpdate));
+    inputs.forEach(input=>input.addEventListener('mousemove',handleUpdate));
+    
+  </script>
+  </body>
+</html>
